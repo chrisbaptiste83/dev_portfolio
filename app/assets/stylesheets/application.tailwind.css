@@ -1,0 +1,118 @@
+@import "tailwindcss/preflight" layer(base);
+@import "tailwindcss/utilities" layer(utilities);
+
+/* Custom theme configuration - Black, White, Gray */
+@theme {
+  --color-primary: #000000;
+  --color-secondary: #9ca3af;
+  --color-tertiary: #1f1f1f;
+  --color-black-100: #111111;
+  --color-black-200: #0a0a0a;
+  --color-white-100: #f5f5f5;
+  --color-accent: #ffffff;
+
+  --font-family-poppins: "Poppins", sans-serif;
+}
+
+/* Base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-family-poppins);
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+/* Custom utility classes */
+.bg-hero-pattern {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}
+
+.black-gradient {
+  background: linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 100%);
+}
+
+.gray-gradient {
+  background: linear-gradient(180deg, #4a4a4a 0%, #2a2a2a 100%);
+}
+
+.white-gradient {
+  background: linear-gradient(180deg, #ffffff 0%, #e0e0e0 100%);
+}
+
+.border-gradient {
+  background: linear-gradient(90deg, #333333 0%, #666666 50%, #333333 100%);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4a4a4a;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #666666;
+}
+
+/* Timeline styles for vertical timeline component */
+.vertical-timeline-element-content {
+  box-shadow: 0 3px 0 #4a4a4a !important;
+}
+
+.vertical-timeline-element-content-arrow {
+  border-right-color: var(--color-tertiary) !important;
+}
+
+.vertical-timeline::before {
+  background: #4a4a4a !important;
+}
+
+/* Hash span for scroll offset */
+.hash-span {
+  margin-top: -100px;
+  padding-bottom: 100px;
+  display: block;
+}
+
+/* Shadow card effect */
+.shadow-card {
+  box-shadow: 0px 35px 120px -15px rgba(255, 255, 255, 0.1);
+}
+
+/* Service card styling */
+.service-card {
+  border: 1px solid #333333;
+  transition: all 0.3s ease;
+}
+
+.service-card:hover {
+  border-color: #666666;
+  transform: translateY(-5px);
+}
+
+/* Tech badge styling */
+.tech-badge {
+  background: var(--color-tertiary);
+  border: 1px solid #333333;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+}
+
+.tech-badge:hover {
+  border-color: #666666;
+  background: #2a2a2a;
+}
