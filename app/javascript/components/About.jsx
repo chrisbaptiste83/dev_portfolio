@@ -82,7 +82,7 @@ const About = () => {
   return (
     <>
       <motion.div variants={textVariant()}>
-        <p className="sm:text-[18px] text-[14px] text-gray-400 uppercase tracking-wider">
+        <p className="sm:text-[18px] text-[14px] text-gray-300 uppercase tracking-wider">
           Introduction
         </p>
         <h2 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]">
@@ -92,7 +92,7 @@ const About = () => {
 
       <motion.p
         variants={fadeIn('', '', 0.1, 1)}
-        className="mt-4 text-gray-400 text-[17px] max-w-3xl leading-[30px]"
+        className="mt-4 text-gray-300 text-[17px] max-w-3xl leading-[30px]"
       >
         I'm a skilled software developer with experience in TypeScript and
         JavaScript, and expertise in frameworks like React, Ruby on Rails, and

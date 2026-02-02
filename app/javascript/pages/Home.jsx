@@ -8,6 +8,7 @@ import {
   Navbar,
   Tech,
   Works,
+  StarsCanvas,
 } from '../components'
 
 const Home = ({ name, experiences, skills, projects, testimonials }) => {
@@ -24,6 +25,7 @@ const Home = ({ name, experiences, skills, projects, testimonials }) => {
       <Feedbacks testimonials={testimonials} />
       <div className="relative z-0">
         <Contact />
+        <StarsCanvas />
       </div>
     </div>
   )

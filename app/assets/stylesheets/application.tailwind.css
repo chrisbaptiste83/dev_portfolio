@@ -1,16 +1,24 @@
-@import "tailwindcss/preflight" layer(base);
-@import "tailwindcss/utilities" layer(utilities);
+@import "tailwindcss";
 
-/* Custom theme configuration - Black, White, Gray */
+/* Source files to scan for class names */
+@source "../../javascript/**/*.{js,jsx}";
+@source "../../../app/views/**/*.{erb,html}";
+
+/* Custom theme configuration */
 @theme {
+  /* Colors */
   --color-primary: #000000;
-  --color-secondary: #9ca3af;
-  --color-tertiary: #1f1f1f;
-  --color-black-100: #111111;
-  --color-black-200: #0a0a0a;
-  --color-white-100: #f5f5f5;
-  --color-accent: #ffffff;
+  --color-secondary: #aaa6c3;
+  --color-tertiary: #151030;
+  --color-black-100: #100d25;
+  --color-black-200: #090325;
+  --color-white-100: #f3f3f3;
+  --color-accent: #915eff;
 
+  /* Custom breakpoint for extra small screens */
+  --breakpoint-xs: 450px;
+
+  /* Font */
   --font-family-poppins: "Poppins", sans-serif;
 }
 

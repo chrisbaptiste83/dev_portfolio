@@ -88,7 +88,7 @@ const Contact = () => {
         viewport={{ once: true }}
         className="w-full max-w-2xl bg-black-100 p-8 rounded-2xl border border-gray-800"
       >
-        <p className="sm:text-[18px] text-[14px] text-gray-400 uppercase tracking-wider">
+        <p className="sm:text-[18px] text-[14px] text-gray-300 uppercase tracking-wider">
           Get in touch
         </p>
         <h3 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]">
