@@ -2,8 +2,6 @@ import React from 'react'
 import {
   About,
   Contact,
-  Experience,
-  Feedbacks,
   Hero,
   Navbar,
   Tech,
@@ -11,7 +9,7 @@ import {
   StarsCanvas,
 } from '../components'
 
-const Home = ({ name, experiences, skills, projects, testimonials }) => {
+const Home = ({ name, skills, projects }) => {
   return (
     <div className="relative z-0 bg-primary">
       <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center">
@@ -19,10 +17,8 @@ const Home = ({ name, experiences, skills, projects, testimonials }) => {
         <Hero name={name} />
       </div>
       <About />
-      <Experience experiences={experiences} />
       <Tech skills={skills} />
       <Works projects={projects} />
-      <Feedbacks testimonials={testimonials} />
       <div className="relative z-0">
         <Contact />
         <StarsCanvas />

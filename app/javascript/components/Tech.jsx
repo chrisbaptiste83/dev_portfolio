@@ -27,14 +27,14 @@ const Tech = ({ skills = [] }) => {
         transition={{ duration: 0.5 }}
         viewport={{ once: true }}
       >
-        <p className="sm:text-[18px] text-[14px] text-gray-400 uppercase tracking-wider">
+        <p className="sm:text-[18px] text-[14px] text-accent uppercase tracking-wider text-center">
           What I work with
         </p>
-        <h2 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px] mb-10">
+        <h2 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px] mb-10 text-center">
           Technologies.
         </h2>
       </motion.div>
-      <div className="flex flex-row flex-wrap justify-center gap-4">
+      <div className="flex flex-row flex-wrap justify-center gap-5 mt-4">
         {displayTechnologies.map((technology, index) => (
           <motion.div
             key={technology.name}

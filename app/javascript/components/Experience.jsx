@@ -29,23 +29,23 @@ const ExperienceCard = ({ experience }) => {
   return (
     <VerticalTimelineElement
       contentStyle={{
-        background: '#1a1a1a',
+        background: '#141414',
         color: '#fff',
-        border: '1px solid #333',
+        border: '1px solid #262626',
       }}
-      contentArrowStyle={{ borderRight: '7px solid #333' }}
+      contentArrowStyle={{ borderRight: '7px solid #262626' }}
       date={experience.date}
-      iconStyle={{ background: '#2a2a2a', border: '2px solid #444' }}
+      iconStyle={{ background: '#1a1a1a', border: '2px solid #333' }}
       icon={
-        <div className="flex justify-center items-center w-full h-full text-2xl">
-          {experience.icon}
+        <div className="flex justify-center items-center w-full h-full text-white font-bold">
+          {experience.icon || '●'}
         </div>
       }
     >
       <div>
         <h3 className="text-white text-[24px] font-bold">{experience.title}</h3>
         <p
-          className="text-gray-400 text-[16px] font-semibold"
+          className="text-neutral-500 text-[16px] font-semibold"
           style={{ margin: 0 }}
         >
           {experience.company_name}
@@ -56,7 +56,7 @@ const ExperienceCard = ({ experience }) => {
         {experience.points.map((point, index) => (
           <li
             key={`experience-point-${index}`}
-            className="text-gray-300 text-[14px] pl-1 tracking-wider"
+            className="text-neutral-400 text-[14px] pl-1 tracking-wider"
           >
             {point}
           </li>
@@ -71,8 +71,7 @@ const Experience = ({ experiences = [] }) => {
     {
       title: 'Senior Full Stack Developer',
       company_name: 'Tech Company',
-      icon: '🏢',
-      iconBg: '#2a2a2a',
+      icon: '●',
       date: 'Jan 2023 - Present',
       points: [
         'Developing and maintaining web applications using React.js, Ruby on Rails, and other related technologies.',
@@ -84,8 +83,7 @@ const Experience = ({ experiences = [] }) => {
     {
       title: 'Full Stack Developer',
       company_name: 'Startup Inc',
-      icon: '🚀',
-      iconBg: '#3a3a3a',
+      icon: '●',
       date: 'Jun 2021 - Dec 2022',
       points: [
         'Built scalable web applications using modern JavaScript frameworks.',
@@ -97,8 +95,7 @@ const Experience = ({ experiences = [] }) => {
     {
       title: 'Junior Developer',
       company_name: 'Web Agency',
-      icon: '💼',
-      iconBg: '#2a2a2a',
+      icon: '●',
       date: 'Jan 2020 - May 2021',
       points: [
         'Developed responsive websites for various clients.',
@@ -112,7 +109,7 @@ const Experience = ({ experiences = [] }) => {
   return (
     <>
       <motion.div variants={textVariant()}>
-        <p className="sm:text-[18px] text-[14px] text-gray-400 uppercase tracking-wider">
+        <p className="sm:text-[18px] text-[14px] text-neutral-500 uppercase tracking-wider">
           What I have done so far
         </p>
         <h2 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]">

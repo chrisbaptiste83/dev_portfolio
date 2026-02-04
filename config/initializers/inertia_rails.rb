@@ -1,3 +1,4 @@
 InertiaRails.configure do |config|
-  config.version = ViteRails.manifest.vite_asset_path("application.js") rescue nil
+  config.version = nil
+  config.always_include_errors_hash = true
 end

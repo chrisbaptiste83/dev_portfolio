@@ -4,16 +4,29 @@
 @source "../../javascript/**/*.{js,jsx}";
 @source "../../../app/views/**/*.{erb,html}";
 
-/* Custom theme configuration */
+/* Custom theme configuration - Clean monochromatic palette */
 @theme {
-  /* Colors */
-  --color-primary: #000000;
-  --color-secondary: #aaa6c3;
-  --color-tertiary: #151030;
-  --color-black-100: #100d25;
-  --color-black-200: #090325;
-  --color-white-100: #f3f3f3;
-  --color-accent: #915eff;
+  /* Core colors - minimalist black/white/gray with accent */
+  --color-primary: #0a0a0a;
+  --color-secondary: #b0b0b0;
+  --color-tertiary: #141414;
+  --color-black-100: #0f0f0f;
+  --color-black-200: #050505;
+  --color-white-100: #f5f5f5;
+  --color-accent: #818cf8;
+  --color-accent-muted: #6366f1;
+
+  /* Neutral grays for consistency */
+  --color-neutral-50: #fafafa;
+  --color-neutral-100: #f5f5f5;
+  --color-neutral-200: #e5e5e5;
+  --color-neutral-300: #d4d4d4;
+  --color-neutral-400: #a3a3a3;
+  --color-neutral-500: #737373;
+  --color-neutral-600: #525252;
+  --color-neutral-700: #404040;
+  --color-neutral-800: #262626;
+  --color-neutral-900: #171717;
 
   /* Custom breakpoint for extra small screens */
   --breakpoint-xs: 450px;
@@ -32,34 +45,38 @@
   color-scheme: dark;
 }
 
+body {
+  background-color: var(--color-primary);
+}
+
 /* Custom utility classes */
 .bg-hero-pattern {
   background: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.8) 0%,
-    rgba(0, 0, 0, 1) 100%
+    rgba(10, 10, 10, 0.9) 0%,
+    rgba(10, 10, 10, 1) 100%
   );
 }
 
 .black-gradient {
-  background: linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 100%);
+  background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
 }
 
 .gray-gradient {
-  background: linear-gradient(180deg, #4a4a4a 0%, #2a2a2a 100%);
+  background: linear-gradient(180deg, #404040 0%, #262626 100%);
 }
 
 .white-gradient {
-  background: linear-gradient(180deg, #ffffff 0%, #e0e0e0 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #e5e5e5 100%);
 }
 
 .border-gradient {
-  background: linear-gradient(90deg, #333333 0%, #666666 50%, #333333 100%);
+  background: linear-gradient(90deg, #262626 0%, #404040 50%, #262626 100%);
 }
 
 /* Scrollbar styling */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -67,17 +84,17 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #4a4a4a;
-  border-radius: 4px;
+  background: #333333;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #666666;
+  background: #4a4a4a;
 }
 
 /* Timeline styles for vertical timeline component */
 .vertical-timeline-element-content {
-  box-shadow: 0 3px 0 #4a4a4a !important;
+  box-shadow: 0 3px 0 #262626 !important;
 }
 
 .vertical-timeline-element-content-arrow {
@@ -85,7 +102,7 @@
 }
 
 .vertical-timeline::before {
-  background: #4a4a4a !important;
+  background: #333333 !important;
 }
 
 /* Hash span for scroll offset */
@@ -97,30 +114,68 @@
 
 /* Shadow card effect */
 .shadow-card {
-  box-shadow: 0px 35px 120px -15px rgba(255, 255, 255, 0.1);
+  box-shadow: 0px 20px 80px -15px rgba(255, 255, 255, 0.05);
 }
 
 /* Service card styling */
 .service-card {
-  border: 1px solid #333333;
+  border: 1px solid #262626;
   transition: all 0.3s ease;
+  background: linear-gradient(180deg, #1a1a1a 0%, #141414 100%);
 }
 
 .service-card:hover {
-  border-color: #666666;
-  transform: translateY(-5px);
+  border-color: var(--color-accent-muted);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 40px rgba(129, 140, 248, 0.08);
 }
 
 /* Tech badge styling */
 .tech-badge {
   background: var(--color-tertiary);
-  border: 1px solid #333333;
+  border: 1px solid #262626;
   padding: 0.75rem 1.5rem;
   border-radius: 9999px;
   transition: all 0.3s ease;
 }
 
 .tech-badge:hover {
-  border-color: #666666;
-  background: #2a2a2a;
+  border-color: var(--color-accent-muted);
+  background: #1a1a1a;
+  color: var(--color-accent);
+}
+
+/* Focus styles for accessibility */
+input:focus,
+textarea:focus,
+button:focus {
+  outline: 2px solid #404040;
+  outline-offset: 2px;
+}
+
+/* Consistent button styling */
+.btn-primary {
+  background: #ffffff;
+  color: #0a0a0a;
+  padding: 0.75rem 2rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: #e5e5e5;
+  transform: translateY(-1px);
+}
+
+/* Card base styling */
+.card {
+  background: var(--color-tertiary);
+  border: 1px solid #262626;
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  border-color: #404040;
 }

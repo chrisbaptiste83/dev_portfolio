@@ -47,7 +47,6 @@ const Contact = () => {
     setError('')
 
     try {
-      // Get CSRF token from meta tag
       const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content
 
       const response = await fetch('/contact', {
@@ -86,9 +85,9 @@ const Contact = () => {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
-        className="w-full max-w-2xl bg-black-100 p-8 rounded-2xl border border-gray-800"
+        className="w-full max-w-2xl bg-black-100 p-10 sm:p-12 rounded-2xl border border-neutral-800"
       >
-        <p className="sm:text-[18px] text-[14px] text-gray-300 uppercase tracking-wider">
+        <p className="sm:text-[18px] text-[14px] text-accent uppercase tracking-wider">
           Get in touch
         </p>
         <h3 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]">
@@ -108,7 +107,7 @@ const Contact = () => {
               value={form.name}
               onChange={handleChange}
               placeholder="What's your name?"
-              className="bg-tertiary py-4 px-6 placeholder:text-gray-500 text-white rounded-lg outline-none border border-gray-700 font-medium focus:border-gray-500 transition-colors"
+              className="bg-tertiary py-4 px-6 placeholder:text-neutral-600 text-white rounded-lg outline-none border border-neutral-800 font-medium focus:border-neutral-600 transition-colors"
               required
             />
           </label>
@@ -120,7 +119,7 @@ const Contact = () => {
               value={form.email}
               onChange={handleChange}
               placeholder="What's your email?"
-              className="bg-tertiary py-4 px-6 placeholder:text-gray-500 text-white rounded-lg outline-none border border-gray-700 font-medium focus:border-gray-500 transition-colors"
+              className="bg-tertiary py-4 px-6 placeholder:text-neutral-600 text-white rounded-lg outline-none border border-neutral-800 font-medium focus:border-neutral-600 transition-colors"
               required
             />
           </label>
@@ -132,7 +131,7 @@ const Contact = () => {
               value={form.message}
               onChange={handleChange}
               placeholder="What do you want to say?"
-              className="bg-tertiary py-4 px-6 placeholder:text-gray-500 text-white rounded-lg outline-none border border-gray-700 font-medium focus:border-gray-500 transition-colors"
+              className="bg-tertiary py-4 px-6 placeholder:text-neutral-600 text-white rounded-lg outline-none border border-neutral-800 font-medium focus:border-neutral-600 transition-colors"
               required
             />
           </label>
@@ -149,7 +148,7 @@ const Contact = () => {
 
           <button
             type="submit"
-            className="bg-white text-black py-3 px-8 rounded-xl outline-none w-fit font-bold hover:bg-gray-200 transition-colors"
+            className="bg-accent text-white py-3 px-8 rounded-xl outline-none w-fit font-bold hover:bg-accent-muted transition-colors"
             disabled={loading}
           >
             {loading ? 'Sending...' : 'Send'}
