@@ -41,6 +41,13 @@ const textVariant = (delay) => {
   }
 }
 
+const tagColors = [
+  'text-accent-light bg-accent/10 border-accent/20',
+  'text-emerald-400 bg-emerald-400/10 border-emerald-400/20',
+  'text-amber-400 bg-amber-400/10 border-amber-400/20',
+  'text-pink-400 bg-pink-400/10 border-pink-400/20',
+]
+
 const ProjectCard = ({
   index,
   name,
@@ -52,10 +59,20 @@ const ProjectCard = ({
 }) => {
   return (
     <motion.div variants={fadeIn('up', 'spring', index * 0.5, 0.75)}>
-      <div className="bg-tertiary p-6 rounded-2xl sm:w-[360px] w-full group border border-neutral-800 hover:border-accent-muted/40 transition-colors">
+      <div className="bg-tertiary p-6 rounded-2xl sm:w-[360px] w-full group border border-neutral-800 project-card">
         <div className="relative w-full h-[230px]">
-          <div className="w-full h-full rounded-2xl bg-black-100 flex items-center justify-center border border-neutral-800">
-            <span className="text-4xl font-black text-neutral-700">{String(index + 1).padStart(2, '0')}</span>
+          <div className="w-full h-full rounded-2xl bg-gradient-to-br from-accent/5 via-black-100 to-accent-muted/10 flex items-center justify-center border border-neutral-800 relative overflow-hidden">
+            <div
+              className="absolute inset-0 opacity-[0.03]"
+              style={{
+                backgroundImage: 'linear-gradient(rgba(129,140,248,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(129,140,248,0.3) 1px, transparent 1px)',
+                backgroundSize: '20px 20px',
+              }}
+            />
+            <div className="flex flex-col items-center gap-2 z-10">
+              <span className="text-5xl font-black text-gradient">{String(index + 1).padStart(2, '0')}</span>
+              <span className="text-neutral-600 text-xs uppercase tracking-widest">Project</span>
+            </div>
           </div>
 
           <div className="absolute inset-0 flex justify-end m-3 gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -76,7 +93,7 @@ const ProjectCard = ({
                 rel="noopener noreferrer"
                 className="bg-white w-10 h-10 rounded-full flex justify-center items-center cursor-pointer hover:scale-110 hover:bg-neutral-200 transition-all"
               >
-                <span className="text-black text-lg">→</span>
+                <span className="text-black text-lg">&rarr;</span>
               </a>
             )}
           </div>
@@ -88,14 +105,17 @@ const ProjectCard = ({
         </div>
 
         <div className="mt-4 flex flex-wrap gap-2">
-          {tags.map((tag, tagIndex) => (
-            <span
-              key={`${name}-${tagIndex}`}
-              className="text-[12px] text-accent bg-accent-muted/10 px-3 py-1 rounded border border-accent-muted/20"
-            >
-              {tag.name}
-            </span>
-          ))}
+          {tags.map((tag, tagIndex) => {
+            const colorClass = tagColors[tagIndex % tagColors.length]
+            return (
+              <span
+                key={`${name}-${tagIndex}`}
+                className={`text-[12px] ${colorClass} px-3 py-1 rounded-full border font-medium`}
+              >
+                {tag.name}
+              </span>
+            )
+          })}
         </div>
       </div>
     </motion.div>
@@ -148,7 +168,7 @@ const Works = ({ projects = [] }) => {
         <p className="sm:text-[18px] text-[14px] text-accent uppercase tracking-wider">
           My work
         </p>
-        <h2 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]">
+        <h2 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px] accent-underline accent-underline-center">
           Projects.
         </h2>
       </motion.div>

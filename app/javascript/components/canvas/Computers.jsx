@@ -51,7 +51,7 @@ const FloatingShape = ({ position, rotation, scale, speed, type, index }) => {
     }
   })
 
-  const color = index % 3 === 0 ? '#ffffff' : index % 3 === 1 ? '#a0a0a0' : '#606060'
+  const color = index % 3 === 0 ? '#9b1b30' : index % 3 === 1 ? '#7a1526' : '#5c1018'
 
   return (
     <mesh ref={meshRef} position={position} rotation={rotation} scale={scale}>
@@ -103,12 +103,12 @@ const ComputersCanvas = () => {
       {/* Lighting */}
       <ambientLight intensity={0.5} />
       <directionalLight position={[5, 5, 5]} intensity={0.8} />
-      <pointLight position={[-3, 2, 2]} intensity={0.3} color="#ffffff" />
+      <pointLight position={[-3, 2, 2]} intensity={0.3} color="#9b1b30" />
 
       {/* Animated rings */}
-      <AnimatedRing radius={2} speed={0.2} color="#ffffff" />
-      <AnimatedRing radius={2.5} speed={-0.15} color="#a0a0a0" />
-      <AnimatedRing radius={3} speed={0.1} color="#606060" />
+      <AnimatedRing radius={2} speed={0.2} color="#9b1b30" />
+      <AnimatedRing radius={2.5} speed={-0.15} color="#7a1526" />
+      <AnimatedRing radius={3} speed={0.1} color="#5c1018" />
 
       {/* Floating shapes */}
       <FloatingShapes />

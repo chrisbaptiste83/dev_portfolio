@@ -4,7 +4,6 @@ import {
   VerticalTimeline,
   VerticalTimelineElement,
 } from 'react-vertical-timeline-component'
-import 'react-vertical-timeline-component/style.min.css'
 import SectionWrapper from './hoc/SectionWrapper'
 
 const textVariant = (delay) => {
@@ -32,12 +31,17 @@ const ExperienceCard = ({ experience }) => {
         background: '#141414',
         color: '#fff',
         border: '1px solid #262626',
+        borderRadius: '16px',
       }}
       contentArrowStyle={{ borderRight: '7px solid #262626' }}
       date={experience.date}
-      iconStyle={{ background: '#1a1a1a', border: '2px solid #333' }}
+      dateClassName="text-neutral-500"
+      iconStyle={{
+        background: 'linear-gradient(135deg, #9b1b30 0%, #7a1526 100%)',
+        boxShadow: '0 0 20px rgba(155, 27, 48, 0.3)',
+      }}
       icon={
-        <div className="flex justify-center items-center w-full h-full text-white font-bold">
+        <div className="flex justify-center items-center w-full h-full text-white font-bold text-sm">
           {experience.icon || '●'}
         </div>
       }
@@ -109,10 +113,10 @@ const Experience = ({ experiences = [] }) => {
   return (
     <>
       <motion.div variants={textVariant()}>
-        <p className="sm:text-[18px] text-[14px] text-neutral-500 uppercase tracking-wider">
+        <p className="sm:text-[18px] text-[14px] text-accent uppercase tracking-wider">
           What I have done so far
         </p>
-        <h2 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]">
+        <h2 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px] accent-underline">
           Work Experience.
         </h2>
       </motion.div>

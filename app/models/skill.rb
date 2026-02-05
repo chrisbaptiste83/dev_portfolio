@@ -6,7 +6,8 @@ class Skill < ApplicationRecord
   def as_json_for_frontend
     {
       name: name,
-      color: color || "#915eff"
+      color: color || "#915eff",
+      category: category&.downcase || "tools"
     }
   end
 end

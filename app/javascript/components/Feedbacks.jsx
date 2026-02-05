@@ -50,7 +50,7 @@ const FeedbackCard = ({
 }) => (
   <motion.div
     variants={fadeIn('', 'spring', index * 0.5, 0.75)}
-    className="bg-black-200 p-10 rounded-3xl xs:w-[320px] w-full border border-neutral-800"
+    className="bg-black-200 p-10 rounded-3xl xs:w-[320px] w-full border border-neutral-800 hover:border-accent/20 transition-all duration-300 hover:shadow-[0_0_30px_rgba(155,27,48,0.06)]"
   >
     <p className="text-accent font-black text-[48px]">"</p>
 
@@ -67,7 +67,7 @@ const FeedbackCard = ({
           </p>
         </div>
 
-        <div className="w-10 h-10 rounded-full bg-neutral-800 flex items-center justify-center border border-neutral-700">
+        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent/20 to-accent-muted/10 flex items-center justify-center border border-accent/20">
           <span className="text-xl text-white font-medium">{name.charAt(0)}</span>
         </div>
       </div>
@@ -107,7 +107,7 @@ const Feedbacks = ({ testimonials = [] }) => {
           <p className="sm:text-[18px] text-[14px] text-accent uppercase tracking-wider">
             What others say
           </p>
-          <h2 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]">
+          <h2 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px] accent-underline">
             Testimonials.
           </h2>
         </motion.div>

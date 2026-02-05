@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "react-vertical-timeline-component/style.min.css";
 
 /* Source files to scan for class names */
 @source "../../javascript/**/*.{js,jsx}";
@@ -13,8 +14,10 @@
   --color-black-100: #0f0f0f;
   --color-black-200: #050505;
   --color-white-100: #f5f5f5;
-  --color-accent: #818cf8;
-  --color-accent-muted: #6366f1;
+  --color-accent: #9b1b30;
+  --color-accent-muted: #7a1526;
+  --color-accent-light: #c2425a;
+  --color-accent-dark: #5c1018;
 
   /* Neutral grays for consistency */
   --color-neutral-50: #fafafa;
@@ -126,8 +129,8 @@ body {
 
 .service-card:hover {
   border-color: var(--color-accent-muted);
-  transform: translateY(-4px);
-  box-shadow: 0 10px 40px rgba(129, 140, 248, 0.08);
+  transform: translateY(-6px);
+  box-shadow: 0 10px 40px rgba(155, 27, 48, 0.15), 0 0 0 1px rgba(155, 27, 48, 0.1);
 }
 
 /* Tech badge styling */
@@ -147,9 +150,14 @@ body {
 
 /* Focus styles for accessibility */
 input:focus,
-textarea:focus,
+textarea:focus {
+  outline: 2px solid rgba(155, 27, 48, 0.5);
+  outline-offset: 2px;
+  border-color: rgba(155, 27, 48, 0.4) !important;
+}
+
 button:focus {
-  outline: 2px solid #404040;
+  outline: 2px solid rgba(155, 27, 48, 0.5);
   outline-offset: 2px;
 }
 
@@ -178,4 +186,145 @@ button:focus {
 
 .card:hover {
   border-color: #404040;
+}
+
+/* Navbar scrolled glow */
+.nav-scrolled {
+  border-bottom: 1px solid rgba(155, 27, 48, 0.15);
+  box-shadow: 0 1px 20px rgba(155, 27, 48, 0.06);
+}
+
+/* Service card icon container */
+.service-icon-box {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(155, 27, 48, 0.15) 0%, rgba(122, 21, 38, 0.05) 100%);
+  border: 1px solid rgba(155, 27, 48, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.service-card:hover .service-icon-box {
+  background: linear-gradient(135deg, rgba(155, 27, 48, 0.25) 0%, rgba(122, 21, 38, 0.1) 100%);
+  border-color: rgba(155, 27, 48, 0.4);
+  box-shadow: 0 0 20px rgba(155, 27, 48, 0.15);
+}
+
+/* Gradient text */
+.text-gradient {
+  background: linear-gradient(135deg, #9b1b30 0%, #c2425a 50%, #9b1b30 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Accent underline for headings */
+.accent-underline::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #9b1b30, #7a1526);
+  border-radius: 2px;
+  margin-top: 12px;
+}
+
+.accent-underline-center::after {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* CTA button */
+.btn-accent {
+  background: linear-gradient(135deg, #9b1b30 0%, #7a1526 100%);
+  color: white;
+  padding: 0.875rem 2rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(155, 27, 48, 0.25);
+  display: inline-block;
+}
+
+.btn-accent:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(155, 27, 48, 0.35);
+}
+
+/* Footer divider */
+.footer-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, #262626 20%, #404040 50%, #262626 80%, transparent 100%);
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  border-color: rgba(155, 27, 48, 0.4);
+}
+
+.scroll-indicator-dot {
+  background: var(--color-accent);
+  box-shadow: 0 0 8px rgba(155, 27, 48, 0.4);
+}
+
+/* Project card hover */
+.project-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(155, 27, 48, 0.1), 0 0 0 1px rgba(155, 27, 48, 0.15);
+}
+
+/* Color-coded tech badge variants */
+.tech-badge-frontend {
+  background: rgba(155, 27, 48, 0.08);
+  border: 1px solid rgba(155, 27, 48, 0.2);
+  color: #c2425a;
+  transition: all 0.3s ease;
+}
+.tech-badge-frontend:hover {
+  background: rgba(155, 27, 48, 0.15);
+  border-color: rgba(155, 27, 48, 0.4);
+  box-shadow: 0 0 15px rgba(155, 27, 48, 0.1);
+}
+
+.tech-badge-backend {
+  background: rgba(52, 211, 153, 0.08);
+  border: 1px solid rgba(52, 211, 153, 0.2);
+  color: #6ee7b7;
+  transition: all 0.3s ease;
+}
+.tech-badge-backend:hover {
+  background: rgba(52, 211, 153, 0.15);
+  border-color: rgba(52, 211, 153, 0.4);
+  box-shadow: 0 0 15px rgba(52, 211, 153, 0.1);
+}
+
+.tech-badge-database {
+  background: rgba(251, 191, 36, 0.08);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+  color: #fcd34d;
+  transition: all 0.3s ease;
+}
+.tech-badge-database:hover {
+  background: rgba(251, 191, 36, 0.15);
+  border-color: rgba(251, 191, 36, 0.4);
+  box-shadow: 0 0 15px rgba(251, 191, 36, 0.1);
+}
+
+.tech-badge-tools {
+  background: rgba(244, 114, 182, 0.08);
+  border: 1px solid rgba(244, 114, 182, 0.2);
+  color: #f9a8d4;
+  transition: all 0.3s ease;
+}
+.tech-badge-tools:hover {
+  background: rgba(244, 114, 182, 0.15);
+  border-color: rgba(244, 114, 182, 0.4);
+  box-shadow: 0 0 15px rgba(244, 114, 182, 0.1);
 }

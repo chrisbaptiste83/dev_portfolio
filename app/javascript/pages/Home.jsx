@@ -4,8 +4,10 @@ import {
   Contact,
   Hero,
   Navbar,
+  Stats,
   Tech,
   Works,
+  Footer,
   StarsCanvas,
 } from '../components'
 
@@ -17,12 +19,14 @@ const Home = ({ name, skills, projects }) => {
         <Hero name={name} />
       </div>
       <About />
+      <Stats />
       <Tech skills={skills} />
       <Works projects={projects} />
       <div className="relative z-0">
         <Contact />
         <StarsCanvas />
       </div>
+      <Footer />
     </div>
   )
 }

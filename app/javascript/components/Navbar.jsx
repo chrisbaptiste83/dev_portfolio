@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { motion, LayoutGroup } from 'framer-motion'
 
 const navLinks = [
   { id: 'about', title: 'About' },
@@ -27,8 +28,8 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`sm:px-16 px-8 w-full flex items-center py-5 fixed top-0 z-20 transition-colors duration-300 ${
-        scrolled ? 'bg-primary/95 backdrop-blur-sm' : 'bg-transparent'
+      className={`sm:px-16 px-8 w-full flex items-center py-5 fixed top-0 z-20 transition-all duration-300 ${
+        scrolled ? 'bg-primary/95 backdrop-blur-sm nav-scrolled' : 'bg-transparent'
       }`}
     >
       <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
@@ -40,8 +41,8 @@ const Navbar = () => {
             window.scrollTo(0, 0)
           }}
         >
-          <div className="w-9 h-9 rounded-full bg-white flex items-center justify-center">
-            <span className="text-black font-bold text-lg">CB</span>
+          <div className="w-9 h-9 rounded-full bg-gradient-to-br from-accent to-accent-muted flex items-center justify-center shadow-[0_0_12px_rgba(155,27,48,0.3)]">
+            <span className="text-white font-bold text-lg">CB</span>
           </div>
           <p className={`text-white text-[18px] font-bold cursor-pointer flex transition-opacity duration-300 ${
             scrolled ? 'opacity-100' : 'opacity-0'
@@ -51,19 +52,30 @@ const Navbar = () => {
           </p>
         </a>
 
-        <ul className="list-none hidden sm:flex flex-row gap-10">
-          {navLinks.map((nav) => (
-            <li
-              key={nav.id}
-              className={`${
-                active === nav.title ? 'text-white' : 'text-neutral-400'
-              } hover:text-white text-[18px] font-medium cursor-pointer transition-colors duration-200`}
-              onClick={() => setActive(nav.title)}
-            >
-              <a href={`#${nav.id}`}>{nav.title}</a>
-            </li>
-          ))}
-        </ul>
+        <LayoutGroup>
+          <ul className="list-none hidden sm:flex flex-row gap-10">
+            {navLinks.map((nav) => (
+              <li
+                key={nav.id}
+                className={`${
+                  active === nav.title ? 'text-white' : 'text-neutral-400'
+                } hover:text-white text-[18px] font-medium cursor-pointer transition-colors duration-200`}
+                onClick={() => setActive(nav.title)}
+              >
+                <a href={`#${nav.id}`} className="relative pb-2">
+                  {nav.title}
+                  {active === nav.title && (
+                    <motion.span
+                      layoutId="activeNav"
+                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-accent rounded-full"
+                      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                    />
+                  )}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </LayoutGroup>
 
         <div className="sm:hidden flex flex-1 justify-end items-center">
           <button
