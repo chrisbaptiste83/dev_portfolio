@@ -14,19 +14,33 @@ import {
 const Home = ({ name, skills, projects }) => {
   return (
     <div className="relative z-0 bg-primary">
-      <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center">
-        <Navbar />
-        <Hero name={name} />
+      {/* Aurora ambient background */}
+      <div className="aurora" aria-hidden="true">
+        <div className="aurora-blob aurora-blob-1" />
+        <div className="aurora-blob aurora-blob-2" />
+        <div className="aurora-blob aurora-blob-3" />
       </div>
-      <About />
-      <Stats />
-      <Tech skills={skills} />
-      <Works projects={projects} />
-      <div className="relative z-0">
-        <Contact />
+
+      {/* Stars background (subtle, page-wide) */}
+      <div className="fixed inset-0 z-[1] pointer-events-none">
         <StarsCanvas />
       </div>
-      <Footer />
+
+      <main className="relative z-10">
+        <Navbar />
+        <Hero name={name} />
+
+        <About />
+        <div className="section-divider" />
+        <Stats />
+        <div className="section-divider" />
+        <Tech skills={skills} />
+        <div className="section-divider" />
+        <Works projects={projects} />
+        <div className="section-divider" />
+        <Contact />
+        <Footer />
+      </main>
     </div>
   )
 }

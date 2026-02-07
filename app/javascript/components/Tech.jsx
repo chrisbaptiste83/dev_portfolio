@@ -47,7 +47,7 @@ const Tech = ({ skills = [] }) => {
   }, {})
 
   return (
-    <>
+    <div className="section-stack">
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -58,12 +58,12 @@ const Tech = ({ skills = [] }) => {
         <p className="sm:text-[18px] text-[14px] text-accent uppercase tracking-wider">
           What I work with
         </p>
-        <h2 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px] mb-10 accent-underline accent-underline-center">
+        <h2 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px] accent-underline accent-underline-center">
           Technologies.
         </h2>
       </motion.div>
 
-      <div className="mt-8 space-y-10">
+      <div className="space-y-6">
         {categoryOrder.map((cat) => {
           const items = grouped[cat]
           if (!items || items.length === 0) return null
@@ -96,7 +96,7 @@ const Tech = ({ skills = [] }) => {
           )
         })}
       </div>
-    </>
+    </div>
   )
 }
 

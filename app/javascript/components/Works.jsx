@@ -59,29 +59,31 @@ const ProjectCard = ({
 }) => {
   return (
     <motion.div variants={fadeIn('up', 'spring', index * 0.5, 0.75)}>
-      <div className="bg-tertiary p-6 rounded-2xl sm:w-[360px] w-full group border border-neutral-800 project-card">
+      <div className="bg-tertiary p-6 rounded-2xl sm:w-[360px] w-full group border border-neutral-800 project-card h-full flex flex-col">
         <div className="relative w-full h-[230px]">
-          <div className="w-full h-full rounded-2xl bg-gradient-to-br from-accent/5 via-black-100 to-accent-muted/10 flex items-center justify-center border border-neutral-800 relative overflow-hidden">
-            <div
-              className="absolute inset-0 opacity-[0.03]"
-              style={{
-                backgroundImage: 'linear-gradient(rgba(129,140,248,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(129,140,248,0.3) 1px, transparent 1px)',
-                backgroundSize: '20px 20px',
-              }}
-            />
-            <div className="flex flex-col items-center gap-2 z-10">
+          <div className="w-full h-full rounded-2xl project-image-area flex items-center justify-center border border-neutral-800 relative overflow-hidden">
+            {image && (
+              <img
+                src={image}
+                alt={`${name} preview`}
+                className="project-image"
+                loading="lazy"
+              />
+            )}
+            <div className="project-image-overlay" aria-hidden="true" />
+            <div className="project-image-content flex flex-col items-center gap-2 z-10">
               <span className="text-5xl font-black text-gradient">{String(index + 1).padStart(2, '0')}</span>
               <span className="text-neutral-600 text-xs uppercase tracking-widest">Project</span>
             </div>
           </div>
 
-          <div className="absolute inset-0 flex justify-end m-3 gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+          <div className="absolute inset-0 flex justify-end m-3 gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
             {source_code_link && (
               <a
                 href={source_code_link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-neutral-800 w-10 h-10 rounded-full flex justify-center items-center cursor-pointer hover:scale-110 hover:bg-neutral-700 transition-all"
+                className="bg-neutral-800/90 backdrop-blur-sm w-10 h-10 rounded-full flex justify-center items-center cursor-pointer hover:scale-110 hover:bg-accent/20 hover:border hover:border-accent/30 transition-all"
               >
                 <span className="text-white text-sm">{'</>'}</span>
               </a>
@@ -91,7 +93,7 @@ const ProjectCard = ({
                 href={live_link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white w-10 h-10 rounded-full flex justify-center items-center cursor-pointer hover:scale-110 hover:bg-neutral-200 transition-all"
+                className="bg-white/90 backdrop-blur-sm w-10 h-10 rounded-full flex justify-center items-center cursor-pointer hover:scale-110 transition-all"
               >
                 <span className="text-black text-lg">&rarr;</span>
               </a>
@@ -99,12 +101,12 @@ const ProjectCard = ({
           </div>
         </div>
 
-        <div className="mt-5">
-          <h3 className="text-white font-bold text-[24px]">{name}</h3>
+        <div className="mt-5 flex-1">
+          <h3 className="text-white font-bold text-[24px] group-hover:text-gradient transition-all duration-300">{name}</h3>
           <p className="mt-2 text-neutral-500 text-[14px] leading-relaxed">{description}</p>
         </div>
 
-        <div className="mt-4 flex flex-wrap gap-2">
+        <div className="mt-4 flex flex-wrap gap-2 mt-auto">
           {tags.map((tag, tagIndex) => {
             const colorClass = tagColors[tagIndex % tagColors.length]
             return (
@@ -163,7 +165,7 @@ const Works = ({ projects = [] }) => {
   ]
 
   return (
-    <>
+    <div className="section-stack">
       <motion.div variants={textVariant()} className="text-center">
         <p className="sm:text-[18px] text-[14px] text-accent uppercase tracking-wider">
           My work
@@ -176,7 +178,7 @@ const Works = ({ projects = [] }) => {
       <div className="w-full flex justify-center">
         <motion.p
           variants={fadeIn('', '', 0.1, 1)}
-          className="mt-8 text-neutral-500 text-[17px] max-w-3xl leading-[30px] text-center"
+          className="text-neutral-500 text-[17px] max-w-3xl leading-[30px] text-center"
         >
           Following projects showcase my skills and experience through
           real-world examples of my work. Each project is briefly described with
@@ -186,12 +188,12 @@ const Works = ({ projects = [] }) => {
         </motion.p>
       </div>
 
-      <div className="mt-24 flex flex-wrap gap-10 justify-center">
+      <div className="flex flex-wrap gap-6 sm:gap-8 justify-center">
         {defaultProjects.map((project, index) => (
           <ProjectCard key={`project-${index}`} index={index} {...project} />
         ))}
       </div>
-    </>
+    </div>
   )
 }
 

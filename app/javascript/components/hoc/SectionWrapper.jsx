@@ -21,7 +21,7 @@ const SectionWrapper = (Component, idName) =>
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.25 }}
-        className="sm:px-20 px-10 sm:py-28 py-20 max-w-7xl mx-auto relative z-0"
+        className="section-shell relative z-0"
       >
         <span className="hash-span" id={idName}>
           &nbsp;

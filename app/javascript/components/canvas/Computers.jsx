@@ -1,93 +1,35 @@
-import React, { useRef } from 'react'
+import React, { Suspense, useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { Preload } from '@react-three/drei'
-import * as THREE from 'three'
+import { Preload, Float } from '@react-three/drei'
+import { useSpring, a } from '@react-spring/three'
+import RetroComputer from './RetroComputer'
 
-// Floating geometric shapes
-const FloatingShapes = () => {
-  const groupRef = useRef()
-  const shapes = useRef([])
+const Computers = () => {
+  const computer = useRef()
+  const light = useRef()
 
-  // Create shape data once
-  if (shapes.current.length === 0) {
-    for (let i = 0; i < 15; i++) {
-      shapes.current.push({
-        position: [
-          (Math.random() - 0.5) * 8,
-          (Math.random() - 0.5) * 6,
-          (Math.random() - 0.5) * 4
-        ],
-        rotation: [Math.random() * Math.PI, Math.random() * Math.PI, 0],
-        scale: 0.1 + Math.random() * 0.3,
-        speed: 0.2 + Math.random() * 0.3,
-        type: Math.floor(Math.random() * 3)
-      })
-    }
-  }
+  const [{ rotation }, set] = useSpring(() => ({
+    rotation: [0, 0, 0],
+    config: { mass: 5, tension: 350, friction: 40 },
+  }))
 
-  useFrame((state) => {
-    if (groupRef.current) {
-      groupRef.current.rotation.y = state.clock.elapsedTime * 0.05
-    }
+  useFrame(({ viewport, mouse }) => {
+    const x = (mouse.x * viewport.width) / 2
+    const y = (mouse.y * viewport.height) / 2
+
+    light.current.position.set(x, y, 3)
+    computer.current.rotation.set(y / 100, x / 100, 0)
   })
 
   return (
-    <group ref={groupRef}>
-      {shapes.current.map((shape, i) => (
-        <FloatingShape key={i} {...shape} index={i} />
-      ))}
+    <group>
+      <a.group ref={computer} rotation={rotation}>
+        <Float speed={0.5} rotationIntensity={0.5} floatIntensity={0.5}>
+          <RetroComputer />
+        </Float>
+      </a.group>
+      <pointLight ref={light} distance={5} intensity={5} color="white" />
     </group>
-  )
-}
-
-const FloatingShape = ({ position, rotation, scale, speed, type, index }) => {
-  const meshRef = useRef()
-
-  useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * speed + index) * 0.3
-      meshRef.current.rotation.x = state.clock.elapsedTime * speed * 0.5
-      meshRef.current.rotation.z = state.clock.elapsedTime * speed * 0.3
-    }
-  })
-
-  const color = index % 3 === 0 ? '#9b1b30' : index % 3 === 1 ? '#7a1526' : '#5c1018'
-
-  return (
-    <mesh ref={meshRef} position={position} rotation={rotation} scale={scale}>
-      {type === 0 && <octahedronGeometry args={[1, 0]} />}
-      {type === 1 && <tetrahedronGeometry args={[1, 0]} />}
-      {type === 2 && <icosahedronGeometry args={[1, 0]} />}
-      <meshStandardMaterial
-        color={color}
-        wireframe
-        transparent
-        opacity={0.4}
-      />
-    </mesh>
-  )
-}
-
-// Animated ring
-const AnimatedRing = ({ radius, speed, color, lineWidth }) => {
-  const ringRef = useRef()
-
-  useFrame((state) => {
-    if (ringRef.current) {
-      ringRef.current.rotation.x = state.clock.elapsedTime * speed
-      ringRef.current.rotation.y = state.clock.elapsedTime * speed * 0.5
-    }
-  })
-
-  return (
-    <mesh ref={ringRef}>
-      <torusGeometry args={[radius, 0.02, 16, 100]} />
-      <meshStandardMaterial
-        color={color}
-        transparent
-        opacity={0.3}
-      />
-    </mesh>
   )
 }
 
@@ -96,23 +38,13 @@ const ComputersCanvas = () => {
     <Canvas
       frameloop="always"
       dpr={[1, 2]}
-      camera={{ position: [0, 0, 5], fov: 50 }}
+      camera={{ position: [0, 0, 7], fov: 50 }}
       gl={{ preserveDrawingBuffer: true, antialias: true }}
-      style={{ width: '100%', height: '100%' }}
-    >
-      {/* Lighting */}
-      <ambientLight intensity={0.5} />
-      <directionalLight position={[5, 5, 5]} intensity={0.8} />
-      <pointLight position={[-3, 2, 2]} intensity={0.3} color="#9b1b30" />
-
-      {/* Animated rings */}
-      <AnimatedRing radius={2} speed={0.2} color="#9b1b30" />
-      <AnimatedRing radius={2.5} speed={-0.15} color="#7a1526" />
-      <AnimatedRing radius={3} speed={0.1} color="#5c1018" />
-
-      {/* Floating shapes */}
-      <FloatingShapes />
-
+      style={{ width: '100%', height: '100%' }}>
+      <Suspense fallback={null}>
+        <ambientLight intensity={0.5} />
+        <Computers />
+      </Suspense>
       <Preload all />
     </Canvas>
   )

@@ -80,13 +80,66 @@ const services = [
   },
 ]
 
+const CodeTerminal = () => (
+  <motion.div
+    initial={{ opacity: 0, y: 40 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.8, delay: 0.3 }}
+    viewport={{ once: true }}
+    className="max-w-2xl mx-auto"
+  >
+    <div className="terminal-window">
+      <div className="terminal-header">
+        <div className="flex gap-2">
+          <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
+          <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
+          <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
+        </div>
+        <span className="text-neutral-600 text-xs ml-4" style={{ fontFamily: "'SF Mono', 'Consolas', monospace" }}>
+          developer.js
+        </span>
+      </div>
+      <div className="terminal-body">
+        <div>
+          <span className="terminal-line-number">1</span>
+          <span className="text-accent">const</span> <span className="text-white">developer</span> <span className="text-neutral-500">=</span> <span className="text-neutral-400">{'{'}</span>
+        </div>
+        <div>
+          <span className="terminal-line-number">2</span>
+          {'  '}<span className="text-emerald-400">name</span><span className="text-neutral-500">:</span> <span className="text-amber-300">"Christopher Baptiste"</span><span className="text-neutral-500">,</span>
+        </div>
+        <div>
+          <span className="terminal-line-number">3</span>
+          {'  '}<span className="text-emerald-400">role</span><span className="text-neutral-500">:</span> <span className="text-amber-300">"Full Stack Developer"</span><span className="text-neutral-500">,</span>
+        </div>
+        <div>
+          <span className="terminal-line-number">4</span>
+          {'  '}<span className="text-emerald-400">skills</span><span className="text-neutral-500">:</span> <span className="text-neutral-400">[</span><span className="text-amber-300">"React"</span><span className="text-neutral-500">,</span> <span className="text-amber-300">"Rails"</span><span className="text-neutral-500">,</span> <span className="text-amber-300">"TypeScript"</span><span className="text-neutral-400">]</span><span className="text-neutral-500">,</span>
+        </div>
+        <div>
+          <span className="terminal-line-number">5</span>
+          {'  '}<span className="text-emerald-400">passion</span><span className="text-neutral-500">:</span> <span className="text-amber-300">"Building beautiful things"</span><span className="text-neutral-500">,</span>
+        </div>
+        <div>
+          <span className="terminal-line-number">6</span>
+          {'  '}<span className="text-indigo-400">build</span><span className="text-neutral-500">:</span> <span className="text-neutral-400">()</span> <span className="text-accent">=&gt;</span> <span className="text-amber-300">"amazing products"</span>
+        </div>
+        <div>
+          <span className="terminal-line-number">7</span>
+          <span className="text-neutral-400">{'}'}</span><span className="text-neutral-500">;</span><span className="cursor-blink">|</span>
+        </div>
+      </div>
+    </div>
+  </motion.div>
+)
+
 const ServiceCard = ({ index, title, description, icon }) => (
   <div className="xs:w-[250px] w-full">
     <motion.div
       variants={fadeIn('right', 'spring', index * 0.5, 0.75)}
       className="w-full p-[1px] rounded-[20px] shadow-card service-card"
     >
-      <div className="rounded-[20px] py-8 px-12 min-h-[280px] flex justify-evenly items-center flex-col">
+      <div className="rounded-[20px] py-7 px-10 min-h-[240px] flex justify-evenly items-center flex-col">
         <div className="service-icon-box">
           {icon}
         </div>
@@ -103,7 +156,7 @@ const ServiceCard = ({ index, title, description, icon }) => (
 
 const About = () => {
   return (
-    <>
+    <div className="section-stack">
       <motion.div variants={textVariant()} className="text-center">
         <p className="sm:text-[18px] text-[14px] text-accent uppercase tracking-wider">
           Introduction
@@ -116,7 +169,7 @@ const About = () => {
       <div className="w-full flex justify-center">
         <motion.p
           variants={fadeIn('', '', 0.1, 1)}
-          className="mt-8 text-neutral-400 text-[17px] max-w-3xl leading-[30px] text-center"
+          className="text-neutral-400 text-[17px] max-w-3xl leading-[30px] text-center"
         >
           I'm a skilled software developer with experience in TypeScript and
           JavaScript, and expertise in frameworks like React, Ruby on Rails, and
@@ -126,12 +179,14 @@ const About = () => {
         </motion.p>
       </div>
 
-      <div className="mt-24 flex flex-wrap gap-12 justify-center">
+      <CodeTerminal />
+
+      <div className="flex flex-wrap gap-8 sm:gap-10 justify-center">
         {services.map((service, index) => (
           <ServiceCard key={service.title} index={index} {...service} />
         ))}
       </div>
-    </>
+    </div>
   )
 }
 
