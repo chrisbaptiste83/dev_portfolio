@@ -15,6 +15,8 @@ const staggerContainer = (staggerChildren, delayChildren) => {
 
 const SectionWrapper = (Component, idName) =>
   function HOC(props) {
+    const sectionLabel = idName ? idName.replace(/-/g, ' ') : undefined
+
     return (
       <motion.section
         variants={staggerContainer()}
@@ -22,6 +24,7 @@ const SectionWrapper = (Component, idName) =>
         whileInView="show"
         viewport={{ once: true, amount: 0.25 }}
         className="section-shell relative z-0"
+        aria-label={sectionLabel}
       >
         <span className="hash-span" id={idName}>
           &nbsp;

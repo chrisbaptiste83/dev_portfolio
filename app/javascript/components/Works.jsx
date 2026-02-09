@@ -124,6 +124,128 @@ const ProjectCard = ({
   )
 }
 
+const FeaturedProject = ({ project }) => {
+  if (!project) return null
+  return (
+    <motion.div variants={fadeIn('up', 'spring', 0.2, 0.9)}>
+      <div className="featured-project">
+        <div className="featured-project-media">
+          <div className="project-image-area h-full">
+            {project.image && (
+              <img
+                src={project.image}
+                alt={`${project.name} preview`}
+                className="project-image"
+                loading="lazy"
+              />
+            )}
+            <div className="project-image-overlay" aria-hidden="true" />
+            <div className="project-image-content flex flex-col items-start gap-2">
+              <span className="text-neutral-500 text-xs uppercase tracking-widest">Featured</span>
+              <span className="text-3xl sm:text-4xl font-black text-gradient">{project.name}</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="featured-project-body">
+          <p className="text-neutral-400 text-sm uppercase tracking-widest">Project Spotlight</p>
+          <h3 className="text-white text-2xl sm:text-3xl font-semibold mt-3">{project.name}</h3>
+          <p className="text-neutral-500 text-sm leading-relaxed mt-3">
+            {project.description}
+          </p>
+
+          <div className="mt-5 flex flex-wrap gap-2">
+            {project.tags.map((tag, tagIndex) => {
+              const colorClass = tagColors[tagIndex % tagColors.length]
+              return (
+                <span
+                  key={`${project.name}-${tagIndex}`}
+                  className={`text-[12px] ${colorClass} px-3 py-1 rounded-full border font-medium`}
+                >
+                  {tag.name}
+                </span>
+              )
+            })}
+          </div>
+
+          <div className="mt-6 flex flex-wrap gap-3">
+            {project.source_code_link && (
+              <a
+                href={project.source_code_link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-accent text-sm !py-2.5 !px-5"
+              >
+                View Code
+              </a>
+            )}
+            {project.live_link && (
+              <a
+                href={project.live_link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-neutral-400 hover:text-white border border-neutral-700 hover:border-accent/50 hover:bg-accent/5 px-5 py-2.5 rounded-xl font-medium transition-all text-sm"
+              >
+                Live Demo
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  )
+}
+
+const CompactProject = ({ project, index }) => {
+  return (
+    <motion.div variants={fadeIn('up', 'spring', 0.2 + index * 0.1, 0.8)}>
+      <div className="compact-project">
+        <div className="compact-project-title">
+          <h4 className="text-white text-lg font-semibold">{project.name}</h4>
+          <div className="flex items-center gap-2">
+            {project.source_code_link && (
+              <a
+                href={project.source_code_link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="compact-project-link"
+              >
+                Code
+              </a>
+            )}
+            {project.live_link && (
+              <a
+                href={project.live_link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="compact-project-link"
+              >
+                Live
+              </a>
+            )}
+          </div>
+        </div>
+        <p className="text-neutral-500 text-sm leading-relaxed mt-2">
+          {project.description}
+        </p>
+        <div className="mt-4 flex flex-wrap gap-2">
+          {project.tags.map((tag, tagIndex) => {
+            const colorClass = tagColors[tagIndex % tagColors.length]
+            return (
+              <span
+                key={`${project.name}-compact-${tagIndex}`}
+                className={`text-[11px] ${colorClass} px-2.5 py-1 rounded-full border font-medium`}
+              >
+                {tag.name}
+              </span>
+            )
+          })}
+        </div>
+      </div>
+    </motion.div>
+  )
+}
+
 const Works = ({ projects = [] }) => {
   const defaultProjects = projects.length > 0 ? projects : [
     {
@@ -188,10 +310,19 @@ const Works = ({ projects = [] }) => {
         </motion.p>
       </div>
 
-      <div className="flex flex-wrap gap-6 sm:gap-8 justify-center">
-        {defaultProjects.map((project, index) => (
-          <ProjectCard key={`project-${index}`} index={index} {...project} />
-        ))}
+      <div className="space-y-10">
+        <FeaturedProject project={defaultProjects[0]} />
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+          {defaultProjects.slice(1).map((project, index) => (
+            <CompactProject
+              key={`project-compact-${index}`}
+              project={project}
+              index={index}
+            />
+          ))}
+        </div>
+
       </div>
     </div>
   )

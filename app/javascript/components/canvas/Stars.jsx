@@ -1,11 +1,28 @@
-import React, { useState, useRef, Suspense } from 'react'
+import React, { useMemo, useRef, Suspense } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Points, PointMaterial, Preload } from '@react-three/drei'
 import * as random from 'maath/random/dist/maath-random.esm'
 
+const getStarCount = () => {
+  if (typeof window === 'undefined') return 3500
+
+  const isSmallScreen = window.innerWidth < 768
+  const memory = navigator.deviceMemory || 4
+
+  let count = isSmallScreen ? 2200 : 3600
+
+  if (memory <= 4) count = Math.min(count, 2600)
+  if (memory <= 2) count = Math.min(count, 1800)
+
+  return count
+}
+
 const Stars = (props) => {
   const ref = useRef()
-  const [sphere] = useState(() => random.inSphere(new Float32Array(5000), { radius: 1.2 }))
+  const sphere = useMemo(() => {
+    const count = getStarCount()
+    return random.inSphere(new Float32Array(count), { radius: 1.2 })
+  }, [])
 
   useFrame((state, delta) => {
     if (ref.current) {
@@ -32,7 +49,11 @@ const Stars = (props) => {
 const StarsCanvas = () => {
   return (
     <div className="w-full h-auto absolute inset-0 z-[-1]">
-      <Canvas camera={{ position: [0, 0, 1] }}>
+      <Canvas
+        camera={{ position: [0, 0, 1] }}
+        dpr={[1, 1.5]}
+        gl={{ antialias: false, powerPreference: 'high-performance' }}
+      >
         <Suspense fallback={null}>
           <Stars />
         </Suspense>

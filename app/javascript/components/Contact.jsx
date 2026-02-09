@@ -166,6 +166,7 @@ const Contact = () => {
         <form
           ref={formRef}
           onSubmit={handleSubmit}
+          aria-busy={loading}
           className="flex flex-col gap-6"
         >
           <label className="flex flex-col">
@@ -175,6 +176,7 @@ const Contact = () => {
               name="name"
               value={form.name}
               onChange={handleChange}
+              autoComplete="name"
               placeholder="What's your name?"
               className="contact-input py-4 px-6 placeholder:text-neutral-600 text-white rounded-lg outline-none font-medium"
               required
@@ -187,6 +189,7 @@ const Contact = () => {
               name="email"
               value={form.email}
               onChange={handleChange}
+              autoComplete="email"
               placeholder="What's your email?"
               className="contact-input py-4 px-6 placeholder:text-neutral-600 text-white rounded-lg outline-none font-medium"
               required
@@ -206,13 +209,15 @@ const Contact = () => {
           </label>
 
           {error && (
-            <p className="text-red-400 text-sm">{error}</p>
+            <p role="alert" className="text-red-400 text-sm">{error}</p>
           )}
 
           {success && (
             <motion.p
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
+              role="status"
+              aria-live="polite"
               className="text-emerald-400 text-sm flex items-center gap-2"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
