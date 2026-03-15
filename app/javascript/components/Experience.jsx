@@ -37,8 +37,8 @@ const ExperienceCard = ({ experience }) => {
       date={experience.date}
       dateClassName="text-neutral-500"
       iconStyle={{
-        background: 'linear-gradient(135deg, #9b1b30 0%, #7a1526 100%)',
-        boxShadow: '0 0 20px rgba(155, 27, 48, 0.3)',
+        background: 'linear-gradient(135deg, #c9822b 0%, #a06822 100%)',
+        boxShadow: '0 0 20px rgba(201, 130, 43, 0.3)',
       }}
       icon={
         <div className="flex justify-center items-center w-full h-full text-white font-bold text-sm">

@@ -48,81 +48,65 @@ const tagColors = [
   'text-pink-400 bg-pink-400/10 border-pink-400/20',
 ]
 
-const ProjectCard = ({
-  index,
-  name,
-  description,
-  tags,
-  image,
-  source_code_link,
-  live_link,
-}) => {
-  return (
-    <motion.div variants={fadeIn('up', 'spring', index * 0.5, 0.75)}>
-      <div className="bg-tertiary p-6 rounded-2xl sm:w-[360px] w-full group border border-neutral-800 project-card h-full flex flex-col">
-        <div className="relative w-full h-[230px]">
-          <div className="w-full h-full rounded-2xl project-image-area flex items-center justify-center border border-neutral-800 relative overflow-hidden">
-            {image && (
-              <img
-                src={image}
-                alt={`${name} preview`}
-                className="project-image"
-                loading="lazy"
-              />
-            )}
-            <div className="project-image-overlay" aria-hidden="true" />
-            <div className="project-image-content flex flex-col items-center gap-2 z-10">
-              <span className="text-5xl font-black text-gradient">{String(index + 1).padStart(2, '0')}</span>
-              <span className="text-neutral-600 text-xs uppercase tracking-widest">Project</span>
-            </div>
-          </div>
-
-          <div className="absolute inset-0 flex justify-end m-3 gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-            {source_code_link && (
-              <a
-                href={source_code_link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-neutral-800/90 backdrop-blur-sm w-10 h-10 rounded-full flex justify-center items-center cursor-pointer hover:scale-110 hover:bg-accent/20 hover:border hover:border-accent/30 transition-all"
-              >
-                <span className="text-white text-sm">{'</>'}</span>
-              </a>
-            )}
-            {live_link && (
-              <a
-                href={live_link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white/90 backdrop-blur-sm w-10 h-10 rounded-full flex justify-center items-center cursor-pointer hover:scale-110 transition-all"
-              >
-                <span className="text-black text-lg">&rarr;</span>
-              </a>
-            )}
-          </div>
-        </div>
-
-        <div className="mt-5 flex-1">
-          <h3 className="text-white font-bold text-[24px] group-hover:text-gradient transition-all duration-300">{name}</h3>
-          <p className="mt-2 text-neutral-500 text-[14px] leading-relaxed">{description}</p>
-        </div>
-
-        <div className="mt-4 flex flex-wrap gap-2 mt-auto">
-          {tags.map((tag, tagIndex) => {
-            const colorClass = tagColors[tagIndex % tagColors.length]
-            return (
-              <span
-                key={`${name}-${tagIndex}`}
-                className={`text-[12px] ${colorClass} px-3 py-1 rounded-full border font-medium`}
-              >
-                {tag.name}
-              </span>
-            )
-          })}
-        </div>
-      </div>
-    </motion.div>
-  )
-}
+const MY_PROJECTS = [
+  {
+    name: 'Shopzilla — Gloria\'s Embroidery',
+    description:
+      'Full-featured e-commerce platform for an embroidery studio. Stripe-powered checkout, secure time-limited download links, user dashboard, wishlist, and a stunning aurora-themed UI with DaisyUI and Tailwind CSS.',
+    tags: [
+      { name: 'Rails 8' },
+      { name: 'Stripe' },
+      { name: 'Tailwind/DaisyUI' },
+      { name: 'Active Storage' },
+      { name: 'Kamal' },
+    ],
+    image: '/images/projects/shopzilla.png',
+    source_code_link: 'https://github.com/chrisbaptiste83/shopzilla',
+    live_link: 'https://gloriasembroideryshop.com',
+  },
+  {
+    name: 'Libra Arcana',
+    description:
+      'Dark-themed digital bookstore with Stripe checkout, time-limited token-authenticated download links, admin dashboard via ActiveAdmin, and rich reading experience built on Rails with Active Storage.',
+    tags: [
+      { name: 'Rails 7' },
+      { name: 'Stripe' },
+      { name: 'Devise' },
+      { name: 'ActiveAdmin' },
+    ],
+    image: '/images/projects/libra_arcana.png',
+    source_code_link: 'https://github.com/chrisbaptiste83/libra_arcana',
+    live_link: 'https://libra-arcana.online',
+  },
+  {
+    name: 'Tethered — Social Platform',
+    description:
+      'Full-featured social media app with posts, comments, reactions, friendships, photo albums, real-time messaging, and live notifications powered by ActionCable. Built with Rails and a rich component UI.',
+    tags: [
+      { name: 'Rails 8' },
+      { name: 'ActionCable' },
+      { name: 'Turbo' },
+      { name: 'PostgreSQL' },
+    ],
+    image: '/images/projects/social_media.png',
+    source_code_link: 'https://github.com/chrisbaptiste83/social_media_app',
+    live_link: 'https://tethered.site',
+  },
+  {
+    name: 'Cyrus Baptiste Portfolio',
+    description:
+      'Personal portfolio site built for a client. Modern dark aesthetic with smooth animations, project showcase, contact form, and fully responsive layout deployed with Kamal on a custom domain.',
+    tags: [
+      { name: 'Rails 8' },
+      { name: 'Tailwind CSS' },
+      { name: 'GSAP' },
+      { name: 'Kamal' },
+    ],
+    image: '/images/projects/cyrus_portfolio.png',
+    source_code_link: 'https://github.com/chrisbaptiste83/cyrus-portfolio',
+    live_link: 'https://cyrusbaptiste.com',
+  },
+]
 
 const FeaturedProject = ({ project }) => {
   if (!project) return null
@@ -199,7 +183,19 @@ const FeaturedProject = ({ project }) => {
 const CompactProject = ({ project, index }) => {
   return (
     <motion.div variants={fadeIn('up', 'spring', 0.2 + index * 0.1, 0.8)}>
-      <div className="compact-project">
+      <div className="compact-project h-full flex flex-col">
+        <div className="relative w-full h-[200px] rounded-xl overflow-hidden mb-4">
+          {project.image && (
+            <img
+              src={project.image}
+              alt={`${project.name} preview`}
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+          )}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+        </div>
+
         <div className="compact-project-title">
           <h4 className="text-white text-lg font-semibold">{project.name}</h4>
           <div className="flex items-center gap-2">
@@ -225,7 +221,7 @@ const CompactProject = ({ project, index }) => {
             )}
           </div>
         </div>
-        <p className="text-neutral-500 text-sm leading-relaxed mt-2">
+        <p className="text-neutral-500 text-sm leading-relaxed mt-2 flex-1">
           {project.description}
         </p>
         <div className="mt-4 flex flex-wrap gap-2">
@@ -247,44 +243,7 @@ const CompactProject = ({ project, index }) => {
 }
 
 const Works = ({ projects = [] }) => {
-  const defaultProjects = projects.length > 0 ? projects : [
-    {
-      name: 'Car Rent',
-      description:
-        'Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.',
-      tags: [
-        { name: 'react' },
-        { name: 'mongodb' },
-        { name: 'tailwind' },
-      ],
-      source_code_link: 'https://github.com/',
-      live_link: 'https://example.com',
-    },
-    {
-      name: 'Job IT',
-      description:
-        'Web application that enables users to search for job openings, view estimated salary ranges for positions, and locate available jobs based on their current location.',
-      tags: [
-        { name: 'react' },
-        { name: 'restapi' },
-        { name: 'scss' },
-      ],
-      source_code_link: 'https://github.com/',
-      live_link: 'https://example.com',
-    },
-    {
-      name: 'Trip Guide',
-      description:
-        'A comprehensive travel booking platform that allows users to book flights, hotels, and rental cars, and offers curated recommendations for popular destinations.',
-      tags: [
-        { name: 'nextjs' },
-        { name: 'supabase' },
-        { name: 'css' },
-      ],
-      source_code_link: 'https://github.com/',
-      live_link: 'https://example.com',
-    },
-  ]
+  const displayProjects = projects.length > 0 ? projects : MY_PROJECTS
 
   return (
     <div className="section-stack">
@@ -302,19 +261,17 @@ const Works = ({ projects = [] }) => {
           variants={fadeIn('', '', 0.1, 1)}
           className="text-neutral-500 text-[17px] max-w-3xl leading-[30px] text-center"
         >
-          Following projects showcase my skills and experience through
-          real-world examples of my work. Each project is briefly described with
-          links to code repositories and live demos. It reflects my
-          ability to solve complex problems, work with different technologies,
-          and manage projects effectively.
+          Real-world applications built from scratch — from e-commerce and social platforms
+          to client portfolios. Each project is fully deployed, production-ready, and reflects
+          my ability to ship complete, polished products end to end.
         </motion.p>
       </div>
 
       <div className="space-y-10">
-        <FeaturedProject project={defaultProjects[0]} />
+        <FeaturedProject project={displayProjects[0]} />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-          {defaultProjects.slice(1).map((project, index) => (
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
+          {displayProjects.slice(1).map((project, index) => (
             <CompactProject
               key={`project-compact-${index}`}
               project={project}
@@ -322,7 +279,6 @@ const Works = ({ projects = [] }) => {
             />
           ))}
         </div>
-
       </div>
     </div>
   )
