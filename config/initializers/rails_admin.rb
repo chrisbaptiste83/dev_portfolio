@@ -1,5 +1,5 @@
 RailsAdmin.config do |config|
-  config.asset_source = :sprockets
+  config.asset_source = :importmap
 
   # Simple HTTP Basic Authentication
   config.authenticate_with do

@@ -2,8 +2,6 @@ source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.0.4"
-# Asset pipeline using Sprockets (required for Rails Admin compatibility)
-gem "sprockets-rails"
 # Use sqlite3 as the database for Active Record
 gem "sqlite3", ">= 2.1"
 # Use the Puma web server [https://github.com/puma/puma]
@@ -45,7 +43,6 @@ gem "inertia_rails"
 
 # Admin panel
 gem "rails_admin", "~> 3.0"
-gem "sassc-rails"
 
 # Authentication for admin
 gem "devise"
