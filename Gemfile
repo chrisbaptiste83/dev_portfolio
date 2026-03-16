@@ -8,6 +8,7 @@ gem "sqlite3", ">= 2.1"
 gem "puma", ">= 5.0"
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem "jsbundling-rails"
+gem "sprockets-rails"
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
@@ -43,6 +44,7 @@ gem "inertia_rails"
 
 # Admin panel
 gem "rails_admin", "~> 3.0"
+gem "importmap-rails"
 
 # Authentication for admin
 gem "devise"
