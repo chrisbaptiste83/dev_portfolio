@@ -17,6 +17,7 @@ class Project < ApplicationRecord
       name: title,
       description: description,
       tags: tags_array.map { |tag| { name: tag, color: "blue-text-gradient" } },
+      image: live_url.present? ? "https://image.thum.io/get/width/1200/crop/800/#{live_url}" : nil,
       source_code_link: github_url,
       live_link: live_url
     }
