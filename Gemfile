@@ -45,6 +45,7 @@ gem "inertia_rails"
 
 # Admin panel
 gem "rails_admin", "~> 3.0"
+gem "sassc-rails"
 
 # Authentication for admin
 gem "devise"
