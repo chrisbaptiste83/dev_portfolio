@@ -108,27 +108,35 @@ const MY_PROJECTS = [
   },
 ]
 
+const BrowserMockup = ({ image, alt, url }) => {
+  const hostname = url ? url.replace(/^https?:\/\//, '') : ''
+  return (
+    <div className="browser-mockup">
+      <div className="browser-bar">
+        <div className="browser-dots">
+          <span className="browser-dot bg-red-500/80" />
+          <span className="browser-dot bg-yellow-400/80" />
+          <span className="browser-dot bg-green-500/80" />
+        </div>
+        <div className="browser-url">{hostname}</div>
+      </div>
+      <div className="browser-screen">
+        {image
+          ? <img src={image} alt={alt} className="w-full h-full object-cover object-top" loading="lazy" />
+          : <div className="w-full h-full bg-neutral-800" />
+        }
+      </div>
+    </div>
+  )
+}
+
 const FeaturedProject = ({ project }) => {
   if (!project) return null
   return (
     <motion.div variants={fadeIn('up', 'spring', 0.2, 0.9)}>
       <div className="featured-project">
         <div className="featured-project-media">
-          <div className="project-image-area h-full">
-            {project.image && (
-              <img
-                src={project.image}
-                alt={`${project.name} preview`}
-                className="project-image"
-                loading="lazy"
-              />
-            )}
-            <div className="project-image-overlay" aria-hidden="true" />
-            <div className="project-image-content flex flex-col items-start gap-2">
-              <span className="text-neutral-500 text-xs uppercase tracking-widest">Featured</span>
-              <span className="text-3xl sm:text-4xl font-black text-gradient">{project.name}</span>
-            </div>
-          </div>
+          <BrowserMockup image={project.image} alt={`${project.name} preview`} url={project.live_link} />
         </div>
 
         <div className="featured-project-body">
@@ -184,16 +192,8 @@ const CompactProject = ({ project, index }) => {
   return (
     <motion.div variants={fadeIn('up', 'spring', 0.2 + index * 0.1, 0.8)}>
       <div className="compact-project h-full flex flex-col">
-        <div className="relative w-full h-[200px] rounded-xl overflow-hidden mb-4">
-          {project.image && (
-            <img
-              src={project.image}
-              alt={`${project.name} preview`}
-              className="w-full h-full object-cover object-top"
-              loading="lazy"
-            />
-          )}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+        <div className="mb-4">
+          <BrowserMockup image={project.image} alt={`${project.name} preview`} url={project.live_link} />
         </div>
 
         <div className="compact-project-title">
