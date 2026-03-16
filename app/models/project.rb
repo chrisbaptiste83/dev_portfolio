@@ -7,17 +7,18 @@ class Project < ApplicationRecord
   scope :featured, -> { where(featured: true) }
   scope :ordered, -> { order(created_at: :desc) }
 
+  SCREENSHOT_PATHS = {
+    "https://gloriasembroideryshop.com" => "/images/projects/shopzilla.png",
+    "https://libra-arcana.online"       => "/images/projects/libra_arcana.png",
+    "https://fit-track.space"           => "/images/projects/fit_tracker.png",
+    "https://tethered.site"             => "/images/projects/tethered.png",
+    "https://mikescantina.live"         => "/images/projects/mikes_cantina.png",
+    "https://cyrusbaptiste.com"         => "/images/projects/cyrus_portfolio.png"
+  }.freeze
+
   def tags_array
     return [] if tags.blank?
     tags.is_a?(Array) ? tags : JSON.parse(tags) rescue []
-  end
-
-  SCREENSHOT_OVERRIDES = {
-    "https://fit-track.space" => "https://fit-track.space/session/new"
-  }.freeze
-
-  def screenshot_url
-    SCREENSHOT_OVERRIDES.fetch(live_url, live_url)
   end
 
   def as_json_for_frontend
@@ -25,7 +26,7 @@ class Project < ApplicationRecord
       name: title,
       description: description,
       tags: tags_array.map { |tag| { name: tag, color: "blue-text-gradient" } },
-      image: live_url.present? ? "https://image.thum.io/get/width/1200/crop/630/noanimate/#{screenshot_url}" : nil,
+      image: SCREENSHOT_PATHS[live_url],
       source_code_link: github_url,
       live_link: live_url
     }
