@@ -91,51 +91,51 @@ puts "Created #{Experience.count} experiences"
 # Projects
 projects_data = [
   {
-    title: "E-Commerce Platform",
-    description: "A full-featured e-commerce platform with real-time inventory management, payment processing with Stripe, and an admin dashboard. Built with React, Ruby on Rails, and PostgreSQL.",
-    tags: ["react", "rails", "stripe", "postgresql"],
-    github_url: "https://github.com/example/ecommerce",
-    live_url: "https://example-ecommerce.com",
+    title: "Shopzilla",
+    description: "A full-featured e-commerce store for Gloria's embroidery studio. Customers can browse and purchase hand-crafted digital designs and physical embroidery products. Features Stripe checkout, downloadable file delivery, an admin dashboard, and a JSON API with token auth.",
+    tags: ["rails", "stripe", "tailwind", "activeadmin"],
+    github_url: "https://github.com/chrisbaptiste83/shopzilla",
+    live_url: "https://gloriasembroideryshop.com",
     featured: true
   },
   {
-    title: "Project Management Tool",
-    description: "A collaborative project management application with real-time updates, Kanban boards, time tracking, and team collaboration features. Uses WebSockets for live synchronization.",
-    tags: ["react", "node.js", "mongodb", "websockets"],
-    github_url: "https://github.com/example/project-manager",
-    live_url: "https://example-pm.com",
+    title: "FitTrack AI",
+    description: "A full-stack fitness and nutrition tracking app built with Rails 8. Users can log workouts, track nutrition, plan meals, and monitor body composition progress — enhanced by an AI assistant powered by the Claude API.",
+    tags: ["rails", "claude-ai", "tailwind", "stimulus"],
+    github_url: "https://github.com/chrisbaptiste83/fit-tracker",
+    live_url: "https://fit-track.space",
     featured: true
   },
   {
-    title: "AI Content Generator",
-    description: "An AI-powered content generation tool that helps create blog posts, social media content, and marketing copy using OpenAI's GPT API with custom fine-tuning.",
-    tags: ["nextjs", "openai", "tailwind", "typescript"],
-    github_url: "https://github.com/example/ai-content",
-    live_url: "https://example-ai.com",
+    title: "Libra Arcana",
+    description: "A dark-themed digital library for occult and mystical ebooks. Users can browse a curated catalog of esoteric texts, build a personal reading list, and access downloadable content. Features token-based download access and a custom admin panel.",
+    tags: ["rails", "activeadmin", "tailwind", "sqlite"],
+    github_url: "https://github.com/chrisbaptiste83/libra_arcana",
+    live_url: "https://libra-arcana.online",
     featured: true
   },
   {
-    title: "Real Estate Listings",
-    description: "A modern real estate platform with advanced search filters, virtual tours, mortgage calculator, and agent contact system. Features map integration with Mapbox.",
-    tags: ["react", "rails", "mapbox", "elasticsearch"],
-    github_url: "https://github.com/example/realestate",
-    live_url: "https://example-realty.com",
+    title: "Tethered",
+    description: "A full-featured social networking platform built with Rails 8. Users can post, follow, like, and comment in real time. Includes SMS-based authentication via Twilio, Solid Queue for background jobs, and a responsive feed.",
+    tags: ["rails", "twilio", "hotwire", "solid-queue"],
+    github_url: "https://github.com/chrisbaptiste83/social_media_app",
+    live_url: "https://tethered.site",
     featured: false
   },
   {
-    title: "Fitness Tracking App",
-    description: "A comprehensive fitness application with workout planning, progress tracking, nutrition logging, and social features for sharing achievements with friends.",
-    tags: ["react-native", "firebase", "redux", "charts"],
-    github_url: "https://github.com/example/fitness",
-    live_url: "https://example-fitness.com",
+    title: "Mike's Cantina",
+    description: "A cocktail recipe platform where users share and discover craft cocktail recipes. Features an AI-powered bartender assistant using the OpenAI API, user accounts, recipe ratings, and a clean mobile-friendly interface.",
+    tags: ["rails", "openai", "tailwind", "devise"],
+    github_url: "https://github.com/chrisbaptiste83/rails-cocktail-app",
+    live_url: "https://mikescantina.live",
     featured: false
   },
   {
-    title: "Video Streaming Platform",
-    description: "A YouTube-like video streaming platform with video upload, transcoding, live streaming capabilities, and a recommendation engine based on user preferences.",
-    tags: ["nextjs", "aws", "ffmpeg", "redis"],
-    github_url: "https://github.com/example/streaming",
-    live_url: "https://example-stream.com",
+    title: "Cyrus Baptiste Portfolio",
+    description: "A portfolio and gallery management app for artist Cyrus Baptiste and his Arena Negra gallery in Monterrey, Mexico. Showcases artwork collections with an admin CMS for managing pieces, events, and gallery content.",
+    tags: ["rails", "activeadmin", "tailwind", "active-storage"],
+    github_url: "https://github.com/chrisbaptiste83/cyrus-portfolio",
+    live_url: "https://cyrusbaptiste.com",
     featured: false
   }
 ]
