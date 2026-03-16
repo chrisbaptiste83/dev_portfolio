@@ -60,7 +60,7 @@ const MY_PROJECTS = [
       { name: 'Active Storage' },
       { name: 'Kamal' },
     ],
-    image: 'https://image.thum.io/get/width/1200/crop/800/https://gloriasembroideryshop.com',
+    image: 'https://image.thum.io/get/width/1200/crop/630/noanimate/https://gloriasembroideryshop.com',
     source_code_link: 'https://github.com/chrisbaptiste83/shopzilla',
     live_link: 'https://gloriasembroideryshop.com',
   },
@@ -74,7 +74,7 @@ const MY_PROJECTS = [
       { name: 'Devise' },
       { name: 'ActiveAdmin' },
     ],
-    image: 'https://image.thum.io/get/width/1200/crop/800/https://libra-arcana.online',
+    image: 'https://image.thum.io/get/width/1200/crop/630/noanimate/https://libra-arcana.online',
     source_code_link: 'https://github.com/chrisbaptiste83/libra_arcana',
     live_link: 'https://libra-arcana.online',
   },
@@ -88,7 +88,7 @@ const MY_PROJECTS = [
       { name: 'Turbo' },
       { name: 'PostgreSQL' },
     ],
-    image: 'https://image.thum.io/get/width/1200/crop/800/https://tethered.site',
+    image: 'https://image.thum.io/get/width/1200/crop/630/noanimate/https://tethered.site',
     source_code_link: 'https://github.com/chrisbaptiste83/social_media_app',
     live_link: 'https://tethered.site',
   },
@@ -102,7 +102,7 @@ const MY_PROJECTS = [
       { name: 'GSAP' },
       { name: 'Kamal' },
     ],
-    image: 'https://image.thum.io/get/width/1200/crop/800/https://cyrusbaptiste.com',
+    image: 'https://image.thum.io/get/width/1200/crop/630/noanimate/https://cyrusbaptiste.com',
     source_code_link: 'https://github.com/chrisbaptiste83/cyrus-portfolio',
     live_link: 'https://cyrusbaptiste.com',
   },
@@ -189,7 +189,7 @@ const CompactProject = ({ project, index }) => {
             <img
               src={project.image}
               alt={`${project.name} preview`}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-top"
               loading="lazy"
             />
           )}
